@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import data from '../../data/data.json';
 
-import Column from '../../components/Column';
+import Column from '../layout/Column';
 
 const Board = () => {
   const [columns, setColumns] = useState(data.columns);
