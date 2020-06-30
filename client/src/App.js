@@ -9,6 +9,8 @@ import PrivateRoute from './components/routing/PrivateRoute';
 
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
+import ItemState from './context/item/ItemState';
+import ColumnState from './context/column/ColumnState';
 import setAuthToken from './utils/setAuthToken';
 import './App.css';
 
@@ -20,15 +22,19 @@ const App = () => {
   return (
     <AuthState>
       <AlertState>
-        <Router>
-          <Navbar />
-          <Switch>
-            <PrivateRoute exact path='/' component={Board} />
-            <Route exact path='/about' component={About} />
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/login' component={Login} />
-          </Switch>
-        </Router>
+        <ColumnState>
+          <ItemState>
+            <Router>
+              <Navbar />
+              <Switch>
+                <PrivateRoute exact path='/' component={Board} />
+                <Route exact path='/about' component={About} />
+                <Route exact path='/register' component={Register} />
+                <Route exact path='/login' component={Login} />
+              </Switch>
+            </Router>
+          </ItemState>
+        </ColumnState>
       </AlertState>
     </AuthState>
   );

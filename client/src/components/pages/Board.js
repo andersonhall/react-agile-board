@@ -1,18 +1,11 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import data from '../../data/data.json';
 
 import Column from '../layout/Column';
-import AuthContext from '../../context/auth/authContext';
 
 const Board = () => {
   const [columns, setColumns] = useState(data.columns);
-  const authContext = useContext(AuthContext);
-
-  useEffect(() => {
-    authContext.loadUser();
-    // eslint-disable-next-line
-  }, []);
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) {

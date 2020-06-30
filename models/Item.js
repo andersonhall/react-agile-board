@@ -20,7 +20,7 @@ const itemSchema = mongoose.Schema({
     type: Number,
   },
   tags: {
-    type: Array,
+    type: [String],
     default: [],
   },
 });
