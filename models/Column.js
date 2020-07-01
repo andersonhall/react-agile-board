@@ -1,5 +1,29 @@
 const mongoose = require('mongoose');
-const { itemSchema } = require('./Item');
+
+const itemSchema = mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    default: 'As a <user> I want <thing> so that <reason>.',
+  },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users',
+  },
+  iteration: {
+    type: String, // TODO - make this a date?
+  },
+  effort: {
+    type: Number,
+  },
+  tags: {
+    type: [String],
+    default: [],
+  },
+});
 
 const columnSchema = mongoose.Schema({
   title: {
@@ -10,7 +34,7 @@ const columnSchema = mongoose.Schema({
     type: Number,
   },
   items: {
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'items' }],
+    type: [itemSchema],
     default: [],
   },
 });

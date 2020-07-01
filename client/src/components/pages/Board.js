@@ -13,8 +13,6 @@ const Board = () => {
     getColumns();
   }, []);
 
-  console.log(columns);
-
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) {
       return;
