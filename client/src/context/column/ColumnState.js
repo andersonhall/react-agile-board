@@ -17,7 +17,7 @@ import {
 
 const ColumnState = props => {
   const initialState = {
-    columns: null,
+    columns: [],
     current: null,
     filtered: null,
     error: null,
@@ -34,6 +34,9 @@ const ColumnState = props => {
       dispatch({ type: COLUMN_ERROR, payload: err.response.msg });
     }
   };
+
+  // const data = getColumns().then(d => res.d);
+  // console.log(data);
 
   // Add Column
   const addColumn = async column => {

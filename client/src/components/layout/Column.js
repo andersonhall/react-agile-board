@@ -47,7 +47,8 @@ const Column = ({ id, column }) => (
               }}
             >
               {column.items.map((item, index) => {
-                return <Item key={item.id} item={item} index={index} />;
+                // return <Item key={item.id} item={item} index={index} />;
+                return <p key={index}>item</p>;
               })}
               {provided.placeholder}
             </div>

@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import data from '../../data/data.json';
 
 import Column from '../layout/Column';
+import ColumnContext from '../../context/column/ColumnContext';
 
 const Board = () => {
-  const [columns, setColumns] = useState(data.columns);
+  const columnContext = useContext(ColumnContext);
+  const { columns, getColumns } = columnContext;
+
+  useEffect(() => {
+    getColumns();
+  }, []);
+
+  console.log(columns);
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) {
@@ -47,7 +55,7 @@ const Board = () => {
 
   return (
     <div className='board'>
-      <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
+      <DragDropContext onDragEnd={() => {}}>
         {Object.entries(columns).map(([id, column]) => {
           return <Column key={id} id={id} column={column} />;
         })}
