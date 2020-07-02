@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
-import data from '../../data/data.json';
 
 import Column from '../layout/Column';
 import ColumnContext from '../../context/column/ColumnContext';
@@ -11,6 +10,7 @@ const Board = () => {
 
   useEffect(() => {
     getColumns();
+    // eslint-disable-next-line
   }, []);
 
   const onDragEnd = (result, columns, setColumns) => {

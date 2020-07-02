@@ -33,7 +33,8 @@ const Column = ({ id, column }) => (
       )}
     </div>
     <div style={{ margin: 5 }}>
-      <Droppable droppableId={id} key={id}>
+      <h4>{column.title}</h4>
+      <Droppable droppableId={column._id} key={column._id}>
         {(provided, snapshot) => {
           return (
             <div
@@ -42,12 +43,12 @@ const Column = ({ id, column }) => (
               style={{
                 background: snapshot.isDraggingOver ? '#a4a4a4' : 'lightgrey',
                 padding: 4,
-                width: 250,
+                width: 240,
                 minHeight: 'calc(100vh - 7rem)',
               }}
             >
               {column.items.map((item, index) => {
-                return <Item key={item.id} item={item} index={index} />;
+                return <Item key={item._id} item={item} index={index} />;
               })}
               {provided.placeholder}
             </div>

@@ -3,10 +3,10 @@ import { Draggable } from 'react-beautiful-dnd';
 import PropTypes from 'prop-types';
 
 const Item = ({ item, index }) => {
-  const { title, owner, iteration, effort, tags } = item;
+  const { _id, title, owner, iteration, effort, tags } = item;
 
   return (
-    <Draggable className='item' key={item.id} draggableId={item.id} index={index}>
+    <Draggable className='item' key={_id} draggableId={_id} index={index}>
       {(provided, snapshot) => {
         const itemStyle = {
           userSelect: 'none',
