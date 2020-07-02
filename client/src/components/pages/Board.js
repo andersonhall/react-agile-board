@@ -1,12 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
-
+import Spinner from '../layout/Spinner';
 import Column from '../layout/Column';
 import ColumnContext from '../../context/column/ColumnContext';
 
 const Board = () => {
   const columnContext = useContext(ColumnContext);
-  const { columns, getColumns } = columnContext;
+  const { columns, getColumns, loading } = columnContext;
 
   useEffect(() => {
     getColumns();
@@ -53,11 +53,15 @@ const Board = () => {
 
   return (
     <div className='board'>
-      <DragDropContext onDragEnd={() => {}}>
-        {Object.entries(columns).map(([id, column]) => {
-          return <Column key={id} id={id} column={column} />;
-        })}
-      </DragDropContext>
+      {columns == null || loading ? (
+        <Spinner />
+      ) : (
+        <DragDropContext onDragEnd={() => {}}>
+          {Object.entries(columns).map(([id, column]) => {
+            return <Column key={id} id={column._id} column={column} />;
+          })}
+        </DragDropContext>
+      )}
     </div>
   );
 };

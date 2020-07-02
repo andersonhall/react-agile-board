@@ -20,6 +20,7 @@ const ColumnState = props => {
     columns: [],
     current: null,
     filtered: null,
+    loading: true,
     error: null,
   };
 
@@ -110,6 +111,7 @@ const ColumnState = props => {
         current: state.current,
         filtered: state.filtered,
         error: state.error,
+        loading: state.loading,
         getColumns,
         addColumn,
         deleteColumn,
