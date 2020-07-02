@@ -21,8 +21,8 @@ const Column = ({ id, column }) => (
         justifyContent: 'space-between',
       }}
     >
-      <h2>{column.name}</h2>
-      {column.name === 'New' && (
+      <h3 style={{ margin: '0.4rem 0' }}>{column.title}</h3>
+      {column.title === 'New' && (
         <div
           className='btn btn-primary btn-sm m-1'
           onClick={handleClick}
@@ -33,7 +33,6 @@ const Column = ({ id, column }) => (
       )}
     </div>
     <div style={{ margin: 5 }}>
-      <h4>{column.title}</h4>
       <Droppable droppableId={column._id} key={column._id}>
         {(provided, snapshot) => {
           return (
