@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Board from './components/pages/Board';
@@ -25,13 +25,15 @@ const App = () => {
         <AlertState>
           <ItemState>
             <Router>
-              <Navbar />
-              <Switch>
-                <PrivateRoute exact path='/' component={Board} />
-                <Route exact path='/about' component={About} />
-                <Route exact path='/register' component={Register} />
-                <Route exact path='/login' component={Login} />
-              </Switch>
+              <Fragment>
+                <Navbar />
+                <Switch>
+                  <PrivateRoute exact path='/' component={Board} />
+                  <Route exact path='/about' component={About} />
+                  <Route exact path='/register' component={Register} />
+                  <Route exact path='/login' component={Login} />
+                </Switch>
+              </Fragment>
             </Router>
           </ItemState>
         </AlertState>

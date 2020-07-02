@@ -3,12 +3,16 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import Spinner from '../layout/Spinner';
 import Column from '../layout/Column';
 import ColumnContext from '../../context/column/ColumnContext';
+import AuthContext from '../../context/auth/AuthContext';
 
 const Board = () => {
   const columnContext = useContext(ColumnContext);
   const { columns, getColumns, updateColumn, loading } = columnContext;
+  const authContext = useContext(AuthContext);
+  const { loadUser } = authContext;
 
   useEffect(() => {
+    loadUser();
     getColumns();
     // eslint-disable-next-line
   }, []);
