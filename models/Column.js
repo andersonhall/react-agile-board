@@ -10,8 +10,9 @@ const itemSchema = mongoose.Schema({
     default: 'As a <user> I want <thing> so that <reason>.',
   },
   owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'users',
+    type: String,
+    // type: mongoose.Schema.Types.ObjectId, // TODO - use authed users only
+    // ref: 'users',
   },
   iteration: {
     type: String, // TODO - make this a date?

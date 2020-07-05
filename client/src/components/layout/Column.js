@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import PropTypes from 'prop-types';
 
@@ -6,11 +6,21 @@ import Item from './Item';
 import ItemForm from '../items/ItemForm';
 import Modal from './Modal';
 
+import ItemContext from '../../context/item/ItemContext';
+
 const Column = ({ id, column }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const itemContext = useContext(ItemContext);
+
+  const { clearCurrent } = itemContext;
 
   const handleModalClose = () => {
     setIsModalOpen(false);
+  };
+
+  const openModal = () => {
+    clearCurrent();
+    setIsModalOpen(!isModalOpen);
   };
 
   return (
@@ -22,7 +32,7 @@ const Column = ({ id, column }) => {
         {column.title === 'New' && (
           <div
             className='btn btn-primary btn-sm m-1'
-            onClick={() => setIsModalOpen(!isModalOpen)}
+            onClick={openModal}
             style={{ display: 'inline-block', margin: '0', userSelect: 'none' }}
           >
             <i className='fas fa-plus' /> Add Item

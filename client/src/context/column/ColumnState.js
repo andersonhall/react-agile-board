@@ -36,9 +36,6 @@ const ColumnState = props => {
     }
   };
 
-  // const data = getColumns().then(d => res.d);
-  // console.log(data);
-
   // Add Column
   const addColumn = async column => {
     const config = {

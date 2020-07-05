@@ -6,8 +6,8 @@ const ItemForm = ({ onModalClose }) => {
   const itemContext = useContext(ItemContext);
   const columnContext = useContext(ColumnContext);
 
-  const { addItem, current, clearCurrent, updateItem } = itemContext;
-  const { getColumns } = columnContext;
+  const { addItem, deleteItem, current, clearCurrent, updateItem } = itemContext;
+  const { columns, getColumns } = columnContext;
 
   useEffect(() => {
     if (current !== null) {
@@ -37,13 +37,21 @@ const ItemForm = ({ onModalClose }) => {
 
   const onChange = e => setItem({ ...item, [e.target.name]: e.target.value });
 
-  const onSubmit = async e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     if (current === null) {
       await addItem(item);
     } else {
-      await updateItem(item);
+      await updateItem(current);
     }
+    clearAll();
+    onModalClose();
+    getColumns();
+  };
+
+  const handleDelete = async e => {
+    e.preventDefault();
+    await deleteItem(current._id);
     clearAll();
     onModalClose();
     getColumns();
@@ -54,7 +62,7 @@ const ItemForm = ({ onModalClose }) => {
   };
 
   return (
-    <form className='item-form' onSubmit={onSubmit} autoComplete='off'>
+    <form className='item-form' autoComplete='off'>
       <h2 className='text-primary'>{current ? 'Edit Item' : 'Add Item'}</h2>
       <label htmlFor='title'>Title</label>
       <input
@@ -100,7 +108,14 @@ const ItemForm = ({ onModalClose }) => {
       <label htmlFor='tags'>Tags</label>
       <input className='item-form-tags' type='text' name='tags' value={tags} onChange={onChange} />
       {current ? (
-        <button className='btn btn-success'>Update Item</button>
+        <div>
+          <button type='submit' onClick={handleSubmit} className='btn btn-success'>
+            Update Item
+          </button>
+          <button type='submit' onClick={handleDelete} className='btn btn-danger'>
+            Delete Item
+          </button>
+        </div>
       ) : (
         <button className='btn btn-success'>Add item</button>
       )}

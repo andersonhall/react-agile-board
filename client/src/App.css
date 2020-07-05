@@ -15,14 +15,18 @@
   padding: 0;
 }
 
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   background-color: #fff;
   color: #333;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 
 a {
@@ -61,7 +65,6 @@ p {
   height: 100%;
   position: relative;
   top: 3rem;
-  overflow-y: auto;
 }
 
 .page {
@@ -336,16 +339,17 @@ p {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   background-color: rgba(0, 0, 0, 0.7);
 }
 
 .modal-content {
   width: 80%;
   height: 90%;
+  margin-top: 3rem;
   border: 1px solid #d8dce3;
   border-radius: 3px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
@@ -361,17 +365,6 @@ p {
   position: relative;
 }
 
-.cross-btn {
-  padding: 0;
-  margin: 0;
-  background: transparent;
-  border: 0;
-  position: absolute;
-  right: 10px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
 .modal-body {
   flex-grow: 1;
   border-top: solid 1px #d8dce3;
@@ -385,20 +378,6 @@ p {
   justify-content: flex-end;
 }
 
-.close-btn {
-  font-weight: 600;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 2px 0px;
-  background-color: rgb(77, 144, 255);
-  color: rgb(247, 248, 250);
-  height: 35px;
-  width: 117px;
-  font-size: 14px;
-  border-radius: 3px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgb(43, 123, 255);
-  cursor: pointer;
-}
 /* Forms */
 input {
   margin: 1.2rem 0;
