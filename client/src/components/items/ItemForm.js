@@ -6,8 +6,8 @@ const ItemForm = ({ onModalClose }) => {
   const itemContext = useContext(ItemContext);
   const columnContext = useContext(ColumnContext);
 
-  const { addItem, deleteItem, current, clearCurrent, updateItem } = itemContext;
-  const { columns, getColumns } = columnContext;
+  const { addItem, current, clearCurrent, updateItem, deleteItem } = itemContext;
+  const { getColumns } = columnContext;
 
   useEffect(() => {
     if (current !== null) {
@@ -42,7 +42,7 @@ const ItemForm = ({ onModalClose }) => {
     if (current === null) {
       await addItem(item);
     } else {
-      await updateItem(current);
+      await updateItem(item);
     }
     clearAll();
     onModalClose();
@@ -109,15 +109,17 @@ const ItemForm = ({ onModalClose }) => {
       <input className='item-form-tags' type='text' name='tags' value={tags} onChange={onChange} />
       {current ? (
         <div>
-          <button type='submit' onClick={handleSubmit} className='btn btn-success'>
+          <button type='submit' onClick={handleSubmit} value='update' className='btn btn-success'>
             Update Item
           </button>
-          <button type='submit' onClick={handleDelete} className='btn btn-danger'>
+          <button type='submit' onClick={handleDelete} value='delete' className='btn btn-danger'>
             Delete Item
           </button>
         </div>
       ) : (
-        <button className='btn btn-success'>Add item</button>
+        <button type='submit' onClick={handleSubmit} className='btn btn-success'>
+          Add item
+        </button>
       )}
     </form>
   );

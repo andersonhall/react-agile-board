@@ -12,7 +12,7 @@ const Item = ({ item, index }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const itemContext = useContext(ItemContext);
-  const { current, setCurrent } = itemContext;
+  const { setCurrent } = itemContext;
 
   const handleModalClose = () => {
     setIsModalOpen(false);
