@@ -5,23 +5,11 @@ import PropTypes from 'prop-types';
 import Item from './Item';
 
 const Column = ({ id, column }) => (
-  <div
-    style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-start',
-    }}
-  >
-    <div
-      style={{
-        width: '100%',
-        padding: '0 8px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
-    >
-      <h3 style={{ margin: '0.4rem 0' }}>{column.title}</h3>
+  <div className='column'>
+    <div className='column-header'>
+      <h3 className='column-title' style={{ margin: '0.4rem 0' }}>
+        {column.title}
+      </h3>
       {column.title === 'New' && (
         <div
           className='btn btn-primary btn-sm m-1'
@@ -33,7 +21,7 @@ const Column = ({ id, column }) => (
       )}
     </div>
     <div style={{ margin: 5 }}>
-      <Droppable droppableId={column._id} key={column._id}>
+      <Droppable droppableId={column._id} key={column._id} style={{ margin: 5 }}>
         {(provided, snapshot) => {
           return (
             <div
