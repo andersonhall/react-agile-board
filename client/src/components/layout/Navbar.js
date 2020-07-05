@@ -53,8 +53,8 @@ Navbar.propTypes = {
 };
 
 Navbar.defaultProps = {
-  title: 'React Scrum Board',
-  icon: 'fas fa-file',
+  title: 'React Agile Board',
+  icon: 'fas fa-columns',
 };
 
 export default Navbar;

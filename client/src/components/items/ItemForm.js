@@ -11,22 +11,26 @@ const ItemForm = () => {
       setItem(current);
     } else {
       setItem({
-        name: '',
-        email: '',
-        phone: '',
-        type: 'personal',
+        title: '',
+        description: '',
+        owner: '',
+        iteration: '',
+        effort: '',
+        tags: [],
       });
     }
   }, [itemContext, current]);
 
   const [item, setItem] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    type: 'personal',
+    title: '',
+    description: '',
+    owner: '',
+    iteration: '',
+    effort: '',
+    tags: [],
   });
 
-  const { name, email, phone, type } = item;
+  const { title, description, owner, iteration, effort, tags } = item;
 
   const onChange = e => setItem({ ...item, [e.target.name]: e.target.value });
 
@@ -45,35 +49,49 @@ const ItemForm = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className='item-form' onSubmit={onSubmit}>
       <h2 className='text-primary'>{current ? 'Edit Item' : 'Add Item'}</h2>
-      <input type='text' placeholder='Name' name='name' value={name} onChange={onChange} />
-      <input type='email' placeholder='Email' name='email' value={email} onChange={onChange} />
-      <input type='text' placeholder='Phone' name='phone' value={phone} onChange={onChange} />
-      <h5>Item Type</h5>
+      <label htmlFor='title'>Title</label>
       <input
-        type='radio'
-        name='type'
-        value='personal'
-        checked={type === 'personal'}
+        className='item-form-title'
+        type='text'
+        name='title'
+        value={title}
         onChange={onChange}
-      />{' '}
-      Personal{' '}
+      />
+      <label htmlFor='description'>Description</label>
+      <textarea
+        className='item-form-description'
+        name='description'
+        value={description}
+        onChange={onChange}
+      />
+      <label htmlFor='owner'>Owner</label>
       <input
-        type='radio'
-        name='type'
-        value='professional'
-        checked={type === 'professional'}
+        className='item-form-owner'
+        type='text'
+        name='owner'
+        value={owner}
         onChange={onChange}
-      />{' '}
-      Professional
-      <div>
-        <input
-          type='submit'
-          value={current ? 'Update Item' : 'Add Item'}
-          className='btn btn-primary btn-block'
-        />
-      </div>
+      />
+      <label htmlFor='iteration'>Iteration</label>
+      <input
+        className='item-form-iteration'
+        type='text'
+        name='iteration'
+        value={iteration}
+        onChange={onChange}
+      />
+      <label htmlFor='effort'>Effort</label>
+      <input
+        className='item-form-effort'
+        type='text'
+        name='effort'
+        value={effort}
+        onChange={onChange}
+      />
+      <label htmlFor='tags'></label>
+      <input className='item-form-tags' type='text' name='tags' value={tags} onChange={onChange} />
       {current && (
         <div>
           <button className='btn btn-light btn-block' onClick={clearAll}>
