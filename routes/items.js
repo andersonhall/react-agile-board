@@ -20,6 +20,21 @@ router.get('/', async (req, res) => {
   }
 });
 
+// @route   Get api/items/:id
+// @desc    Get single item
+// @access  Private
+router.get('/:id', async (req, res) => {
+  try {
+    await Column.findOne({ 'items._id': req.params.id }, (err, data) => {
+      if (err) throw err;
+      const item = data.items.id(req.params.id);
+      res.json(item);
+    });
+  } catch (err) {
+    res.status(500).send('Server error');
+  }
+});
+
 // @route   POST api/items
 // @desc    Add a new item (Updates the 'New' column)
 // @access  Private
