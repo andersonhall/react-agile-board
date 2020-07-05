@@ -1,10 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import ItemContext from '../../context/item/ItemContext';
+import ColumnContext from '../../context/column/ColumnContext';
 
-const ItemForm = () => {
+const ItemForm = ({ onModalClose }) => {
   const itemContext = useContext(ItemContext);
+  const columnContext = useContext(ColumnContext);
 
   const { addItem, current, clearCurrent, updateItem } = itemContext;
+  const { getColumns } = columnContext;
 
   useEffect(() => {
     if (current !== null) {
@@ -34,14 +37,16 @@ const ItemForm = () => {
 
   const onChange = e => setItem({ ...item, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     if (current === null) {
-      addItem(item);
+      await addItem(item);
     } else {
-      updateItem(item);
+      await updateItem(item);
     }
     clearAll();
+    onModalClose();
+    getColumns();
   };
 
   const clearAll = () => {
@@ -49,7 +54,7 @@ const ItemForm = () => {
   };
 
   return (
-    <form className='item-form' onSubmit={onSubmit}>
+    <form className='item-form' onSubmit={onSubmit} autoComplete='off'>
       <h2 className='text-primary'>{current ? 'Edit Item' : 'Add Item'}</h2>
       <label htmlFor='title'>Title</label>
       <input
@@ -58,7 +63,9 @@ const ItemForm = () => {
         name='title'
         value={title}
         onChange={onChange}
+        required
       />
+
       <label htmlFor='description'>Description</label>
       <textarea
         className='item-form-description'
@@ -90,14 +97,12 @@ const ItemForm = () => {
         value={effort}
         onChange={onChange}
       />
-      <label htmlFor='tags'></label>
+      <label htmlFor='tags'>Tags</label>
       <input className='item-form-tags' type='text' name='tags' value={tags} onChange={onChange} />
-      {current && (
-        <div>
-          <button className='btn btn-light btn-block' onClick={clearAll}>
-            Clear
-          </button>
-        </div>
+      {current ? (
+        <button className='btn btn-success'>Update Item</button>
+      ) : (
+        <button className='btn btn-success'>Add item</button>
       )}
     </form>
   );

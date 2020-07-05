@@ -17,7 +17,7 @@ import {
 
 const ItemState = props => {
   const initialState = {
-    items: null,
+    items: [],
     current: null,
     filtered: null,
     error: null,
