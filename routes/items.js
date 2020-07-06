@@ -48,7 +48,7 @@ router.post('/', auth, async (req, res) => {
   if (iteration) newItem.iteration = iteration;
   if (effort) newItem.effort = effort;
   if (owner) newItem.owner = owner;
-  if (tags) newItem.tags = tags;
+  if (tags) newItem.tags = tags.split(',').map(tag => tag.trim());
   try {
     let column = await Column.findById('5efacc1ff7260a08a88bde8e');
 
