@@ -101,7 +101,7 @@ router.put('/:id', auth, async (req, res) => {
       if (iteration) data.items.id(itemId).iteration = iteration;
       if (effort) data.items.id(itemId).effort = effort;
       if (owner) data.items.id(itemId).owner = owner;
-      if (tags) data.items.id(itemId).tags = tags;
+      if (tags) data.items.id(itemId).tags = tags.split(',').map(tag => tag.trim());
       data.save();
     });
     res.json('Item updated');
